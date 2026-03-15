@@ -2,7 +2,6 @@
 
 from django.shortcuts import render
 =from django.contrib.auth.models import User
-from django.contrib.auth import logout
 
 from django.http import JsonResponse
 from django.contrib.auth import login, authenticate
@@ -16,7 +15,6 @@ from django.views.decorators.csrf import csrf_exempt
 logger = logging.getLogger(__name__)
 
 from django.contrib.auth import logout
-from django.http import JsonResponse
 
 def logout_user(request):
     logout(request)
@@ -50,7 +48,7 @@ def login_user(request):
 # ...
 @csrf_exempt
 def registration(request):
-    context = {}
+
 
 	# Load JSON data from the request body
     data = json.loads(request.body)
@@ -60,12 +58,11 @@ def registration(request):
     last_name = data['lastName']
     email = data['email']
     username_exist = False
-    email_exist = False
     try:
         # Check if user already exists
         User.objects.get(username=username)
         username_exist = True
-	except Exception:
+	except Exceptionas e:
         # If not, simply log this is a new user
         logger.debug("{} is new user".format(username))
 
@@ -75,10 +72,10 @@ def registration(request):
         user = User.objects.create_user(username=username, first_name=first_name, last_name=last_name,password=password, email=email)
         # Login the user and redirect to list page
         login(request, user)
-        data = {"userName":username,"status":"Authenticated"}
+        data = {"userName":username, "status": "Authenticated"}
         return JsonResponse(data)
     else :
-        data = {"userName":username,"error":"Already Registered"}
+        data = {"userName":username, "error": "Already Registered"}
         return JsonResponse(data)
 
 
