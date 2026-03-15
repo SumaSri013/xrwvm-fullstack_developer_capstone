@@ -30,11 +30,13 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     'localhost',
-    'b210213-8000.theianext-1-labs-prod-misc-tools-us-east-0.proxy.cognitiveclass.ai'
+    'b210213-8000.theianext-1-labs-prod-misc-tools-us-east-0.'
+    'proxy.cognitiveclass.ai',
 ]
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://b210213-8000.theianext-1-labs-prod-misc-tools-us-east-0.proxy.cognitiveclass.ai'
+    'https://b210213-8000.theianext-1-labs-prod-misc-tools-us-east-0'
+    '.proxy.cognitiveclass.ai'
 ]
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [],
@@ -144,7 +146,7 @@ MEDIA_URL = '/media/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'frontend/static'),
-    os.path.join(BASE_DIR, 'frontend/build'),
-    os.path.join(BASE_DIR, 'frontend/build/static'),
+    os.path.join(BASE_DIR, 'frontend', 'static'),
+    os.path.join(BASE_DIR, 'frontend', 'build'),
+    os.path.join(BASE_DIR, 'frontend', 'build', 'static'),
 ]
