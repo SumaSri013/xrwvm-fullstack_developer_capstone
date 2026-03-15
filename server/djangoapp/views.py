@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from django.contrib.auth.models import User
 from django.http import JsonResponse
 from django.contrib.auth import login, authenticate, logout
@@ -47,7 +46,7 @@ def registration(request):
     try:
         User.objects.get(username=username)
         username_exist = True
-    except Exception as e:
+    except Exception:
         logger.debug("{} is new user".format(username))
 
     if not username_exist:
